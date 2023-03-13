@@ -5,7 +5,7 @@ project(3dSpecularLR)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui features2d video opencv_imgcodecs calib3d)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui features2d video opencv_imgcodecs calib3d )
 message(STATUS "Found OpenCV ${OpenCV_VERSION} headers in: ${OpenCV_INCLUDE_DIRS}")
 add_library(OpenCV INTERFACE IMPORTED)
 set_property(TARGET OpenCV PROPERTY INTERFACE_INCLUDE_DIRECTORIES ${OpenCV_INCLUDE_DIRS})

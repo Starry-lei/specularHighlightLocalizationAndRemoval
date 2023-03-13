@@ -4,7 +4,7 @@
 #include <opencv2/opencv.hpp>
 #include "useCUDA.h"
 #ifdef REMOVE_SPECULAR_HIGHLIGHT_USING_CUDA
-#include <opencv2\gpu\gpu.hpp>
+#include <opencv2/gpu/gpu.hpp>
 #include <cuda_runtime_api.h>
 #include "ColorProcessing.h"
 #include "Clustering.h"
@@ -30,7 +30,14 @@ public:
 	void setStepValue(float gamma) { this->gamma = gamma; }
 	void enableSort() { this->useSort = true; }
 	void disableSort() { this->useSort = false; }
-	
+
+    cv::Mat diffuseImage, specularImage;
+    cv::Mat minimumImage, maximumImage, rangeImage, maskImage;
+    cv::Point minimumLocation, maximumLocation, maximumMinimumLocation;
+    cv::Mat minimumChromaticityImage, maximumChromaticityImage, isLabelledImage, clusterImage, ratioImage;
+    float *ratio, minCenters[3], maxCenters[3];
+
+
 private:
 	float estimateDistance(float x1, float y1, float x2, float y2);
 	int round(int x);
@@ -40,14 +47,14 @@ private:
 	float *deviceMinCenters, *deviceMaxCenters;
 	cv::Scalar stdDevMean;
 #else
-	cv::Mat minimumImage, maximumImage, rangeImage, maskImage;
-	cv::Mat minimumChromaticityImage, maximumChromaticityImage, isLabelledImage, clusterImage, ratioImage;
-	float *ratio, minCenters[3], maxCenters[3];	
+//	cv::Mat minimumImage, maximumImage, rangeImage, maskImage;
+//	cv::Mat minimumChromaticityImage, maximumChromaticityImage, isLabelledImage, clusterImage, ratioImage;
+//	float *ratio, minCenters[3], maxCenters[3];
 #endif
-	cv::Mat diffuseImage, specularImage;
+//	cv::Mat diffuseImage, specularImage;
 	cv::Scalar minimumMean;
 	double minimumValue, maximumValue, maximumMinimumValue;
-	cv::Point minimumLocation, maximumLocation, maximumMinimumLocation;
+//	cv::Point minimumLocation, maximumLocation, maximumMinimumLocation;
 	float thPercent;
 	int alpha;
 	float beta;
